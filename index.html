@@ -1,378 +1,231 @@
-pointer-events: auto;
-}
-.modal-content {
-background-color: var(--white);
-max-width: 800px;
-width: 100%;
-max-height: 90vh;
-border-radius: 16px;
-overflow-y: auto;
-position: relative;
-box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-transform: translateY(-20px);
-transition: transform 0.3s ease;
-}
-.modal.active .modal-content {
-transform: translateY(0);
-}
-.close-modal {
-position: absolute;
-top: 20px;
-right: 20px;
-background: var(--white);
-border: none;
-width: 40px;
-height: 40px;
-border-radius: 50%;
-font-size: 1.2rem;
-cursor: pointer;
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-z-index: 10;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-.modal-hero {
-height: 250px;
-position: relative;
-}
-.modal-hero img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-.modal-body {
-padding: 30px;
-}
-.calculator-box {
-background-color: var(--bg-light);
-padding: 15px 20px;
-border-radius: 12px;
-margin: 20px 0;
-display: flex;
-align-items: center;
-justify-content: space-between;
-}
-.calc-controls {
-display: flex;
-align-items: center;
-gap: 15px;
-}
-.calc-btn {
-background: var(--white);
-border: 1px solid #E2DCDA;
-width: 35px;
-height: 35px;
-border-radius: 50%;
-cursor: pointer;
-font-weight: bold;
-font-size: 1.1rem;
-}
-.ingredients-list, .steps-list {
-list-style: none;
-margin: 15px 0 25px;
-}
-.ingredients-list li {
-padding: 8px 0;
-border-bottom: 1px dashed #E2DCDA;
-display: flex;
-justify-content: space-between;
-}
-.steps-list li {
-position: relative;
-padding-left: 35px;
-margin-bottom: 15px;
-}
-.steps-list li::before {
-content: counter(step-counter);
-counter-increment: step-counter;
-position: absolute;
-left: 0;
-top: 2px;
-background-color: var(--primary);
-color: var(--white);
-width: 24px;
-height: 24px;
-border-radius: 50%;
-text-align: center;
-font-size: 0.8rem;
-font-weight: bold;
-line-height: 24px;
-}
-.steps-list {
-counter-reset: step-counter;
-}
-footer {
-background-color: #1A1615;
-color: #A39A99;
-text-align: center;
-padding: 40px 20px;
-font-size: 0.9rem;
-border-top: 4px solid var(--primary);
-}
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(15px); }
-to { opacity: 1; transform: translateY(0); }
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабардинская кухня — Традиционные блюда</title>
+    <style>
+        :root {
+            --primary-color: #8c2d19; /* Традиционный бордово-красный оттенок */
+            --secondary-color: #fcf8f2; /* Мягкий светлый фон */
+            --text-color: #2c2c2c;
+            --card-bg: #ffffff;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-Адыгэ Шхыныгъуэхэр
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-Главная
-Рецепты
-О традициях
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
 
-Кабардинская Кухня
-Откройте для себя аутентичные вкусы Кавказа: сытные мясные блюда, нежнейшие соусы и традиционную выпечку, рецепты которой передаются из поколения в поколение.
-Смотреть рецепты
-Популярные блюда
-Книга национальных рецептов
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
 
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
 
-Все рецепты
-Вторые блюда
-Выпечка
-Соусы / Закуски
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-Кулинарные традиции адыгов
+        /* Заглушка для фото (placeholder). Вы можете заменить url на реальные ссылки на картинки */
+        .card-image {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+        }
 
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
 
-Кабардинская (черкесская) кухня формировалась веками под влиянием полукочевого образа жизни, скотоводства и земледелия. Главными продуктами на столе всегда оставались свежее мясо (баранина, говядина, домашняя птица), молочные продукты и кукурузная или просяная мука.
-Пастэ вместо хлеба. Настоящим сердцем кабардинского стола является паста — плотная пшенная каша, которую нарезают нитью. Она заменяет хлеб и идеально подчеркивает остроту и насыщенность соусов.
-Застольный этикет. Кабардинское гостеприимство строго регламентировано. Гостю всегда предлагают лучшее место за трехногим столиком (анэ) и подают блюда в строго иерархическом порядке, выказывая глубокое уважение старшим.
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
 
+        .card-description {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
 
+        .ingredients {
+            background-color: #fdfbf7;
+            border-left: 3px solid var(--primary-color);
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
 
+        .ingredients span {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--text-color);
+        }
 
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>Кабардинская национальная кухня</h1>
+        <p>Богатство вкуса, гостеприимство и вековые традиции Кавказа</p>
+    </header>
 
+    <div class="container">
+        <div class="grid">
 
- Рассчитать ингредиенты
+            <!-- Блюдо 1 -->
+            <div class="card">
+                <!-- Чтобы добавить реальное фото, замените стиль ниже на свой url, например: style="background-image: url('джедлибже.jpg')" -->
+                <div class="card-image" style="background-color: #d4a373;">Джедлибже</div>
+                <div class="card-content">
+                    <h2 class="card-title">Джедлибже (Жедлибжэ)</h2>
+                    <p class="card-description">Одно из самых знаменитых кабардинских блюд. Нежное куриное мясо, тушенное в густом, ароматном сметанном соусе с добавлением лука и специй. Традиционно подается с пастой.</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Курица, домашняя сметана, лук, мука (кукурузная или пшеничная), чеснок, специи.
+                    </div>
+                </div>
+            </div>
 
--
-4
-+
+            <!-- Блюдо 2 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #e9c46a;">Пастэ</div>
+                <div class="card-content">
+                    <h2 class="card-title">Пастэ (ПIастэ)</h2>
+                    <p class="card-description">Крутая, плотная пшенная или кукурузная каша. В кабардинской кухне она полностью заменяет хлеб. Подается в остывшем виде, нарезанная ломтиками, к мясным и соусным блюдам.</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Пшено, кукурузная крупа или мука, вода.
+                    </div>
+                </div>
+            </div>
 
-Ингредиенты:
-Способ приготовления:
+            <!-- Блюдо 3 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #f4a261;">Лягур</div>
+                <div class="card-content">
+                    <h2 class="card-title">Лягур (Лъэгур)</h2>
+                    <p class="card-description">Традиционное вялено-копченое мясо (обычно говядина или баранина). Исторически такое мясо готовили про запас. Перед подачей его обжаривают с луком или тушат.</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Вяленая говядина/баранина, репчатый лук, специи.
+                    </div>
+                </div>
+            </div>
 
+            <!-- Блюдо 4 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #e76f51;">Хычины</div>
+                <div class="card-content">
+                    <h2 class="card-title">Кабардинские хычины</h2>
+                    <p class="card-description">Тонкие пироги из пресного теста с разнообразными начинками. Кабардинские хычины отличаются особой тонкостью раскатки теста. Обжариваются на сухой сковороде и обильно смазываются маслом.</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Мука, кефир/вода, сыр (картофель, зелень или фарш), сливочное масло.
+                    </div>
+                </div>
+            </div>
 
+            <!-- Блюдо 5 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #cdb4db;">Шипс</div>
+                <div class="card-content">
+                    <h2 class="card-title">Шипс (Шэпс)</h2>
+                    <p class="card-description">Густой национальный соус-бульон, основа многих вторых блюд. Бывает молочным, мясным или овощным. Имеет насыщенный пряный вкус благодаря добавлению специальной бжеж (зажарки).</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Мясной бульон, мука, лук, красный перец, чабрец.
+                    </div>
+                </div>
+            </div>
 
-© 2026 Кулинарный гид по Кабардинской кухне. Фи усыгъэ фIыуэ! (Приятного аппетита!)
-// БАЗА ДАННЫХ С РЕЦЕПТАМИ И ИНГРЕДИЕНТАМИ
-const database = [
-{
-id: "libje",
-title: "ЛИБЖЕ (Льыбжьэ)",
-category: "main",
-categoryText: "Второе блюдо",
-desc: "Традиционное нежнейшее тушеное мясо в густом луково-сметанном соусе с добавлением кабардинской соли. Главное праздничное и повседневное блюдо.",
-time: "60 мин",
-difficulty: "Средне",
-image: "unsplash.com",
-featured: true,
-basePortions: 4,
-ingredients: [
-{ name: "Говядина или курица", amount: 800, unit: "г" },
-{ name: "Сметана (20-25%)", amount: 400, unit: "г" },
-{ name: "Лук репчатый", amount: 3, unit: "шт" },
-{ name: "Мука пшеничная", amount: 1.5, unit: "ст. ложки" },
-{ name: "Масло топленное", amount: 50, unit: "г" },
-{ name: "Кабардинская соль и красный перец", amount: 1, unit: "по вкусу" }
-],
-steps: [
-"Мясо нарезать небольшими порционными кусочками и обжарить на топлёном масле до легкой румяной корочки.",
-"Добавить мелко нарезанный лук к мясу, убавить огонь и тушить под крышкой до мягкости лука.",
-"В отдельной емкости смешать сметану с мукой до исчезновения комочков, при необходимости добавить немного бульона.",
-"Влить сметанную смесь в мясо, тщательно перемешать, добавить кабардинскую чесночную соль и красный острый перец.",
-"Томить на медленном огне еще 15–20 минут, пока соус заметно не загустеет."
-]
-},
-{
-id: "paste",
-title: "ПАСТЭ (ПIастэ)",
-category: "main",
-categoryText: "Второе блюдо",
-desc: "Плотная, круто сваренная каша из пшена или кукурузной крупы. Полностью заменяет хлеб за столом и подается к любому блюду с соусом.",
-time: "40 мин",
-difficulty: "Легко",
-image: "unsplash.com",
-featured: true,
-basePortions: 4,
-ingredients: [
-{ name: "Пшено (или кукурузная крупа)", amount: 200, unit: "г" },
-{ name: "Вода", amount: 600, unit: "мл" },
-{ name: "Манная крупа (для плотности)", amount: 2, unit: "ст. ложки" }
-],
-steps: [
-"Пшено тщательно промыть в нескольких водах, чтобы убрать возможную горечь.",
-"Засыпать крупу в кипящую воду и варить на медленном огне, постоянно помешивая, до полного разваривания.",
-"Когда каша загустеет, всыпать манную крупу для дополнительной вязкости и тщательно взбить деревянной лопаточкой.",
-"Разровнять поверхность, убавить огонь на минимум и дать пасте «упреть» под крышкой 10 минут.",
-"Выложить горячую массу на плоское блюдо, дать остыть и нарезать порционными кусочками при помощи нити."
-]
-},
-{
-id: "lakum",
-title: "ЛЭКУМ (Лэкум)",
-category: "bread",
-categoryText: "Выпечка",
-desc: "Воздушные, пышные кусочки дрожжевого теста, обжаренные во фритюре. Традиционное угощение на праздники, свадьбы и поминальные дни.",
-time: "50 мин",
-difficulty: "Легко",
-image: "unsplash.com",
-featured: true,
-basePortions: 4,
-ingredients: [
-{ name: "Мука пшеничная", amount: 600, unit: "г" },
-{ name: "Кефир или молоко", amount: 250, unit: "мл" },
-{ name: "Яйцо куриное", amount: 1, unit: "шт" },
-{ name: "Дрожжи сухие", amount: 1, unit: "ч. ложка" },
-{ name: "Сахар", amount: 1, unit: "ст. ложка" },
-{ name: "Растительное масло для жарки", amount: 300, unit: "мл" }
-],
-steps: [
-"В теплом молоке или кефире развести дрожжи с сахаром, оставить на 10 минут до появления пены.",
-"Добавить яйцо, щепотку соли, постепенно всыпать просеянную муку и замесить мягкое, эластичное тесто.",
-"Накрыть тесто полотенцем и убрать в теплое место на 1-1.5 часа для подъема.",
-"Раскатать готовое тесто в пласт толщиной около 1 см и нарезать на прямоугольники или ромбы.",
-"Обжаривать в большом количестве раскаленного растительного масла с двух сторон до красивой золотистой корочки."
-]
-},
-{
-id: "ships",
-title: "ШИПС (Шыпс)",
-category: "sauce",
-categoryText: "Соусы",
-desc: "Главный национальный соус на основе бульона птицы или сметаны, загущенный мукой. Обладает богатым чесночно-пряным ароматом.",
-time: "35 мин",
-difficulty: "Средне",
-image: "unsplash.com",
-featured: false,
-basePortions: 4,
-ingredients: [
-{ name: "Насыщенный куриный бульон", amount: 500, unit: "мл" },
-{ name: "Мука кукурузная или пшеничная", amount: 2, unit: "ст. ложки" },
-{ name: "Сливочное масло", amount: 40, unit: "г" },
-{ name: "Чеснок", amount: 4, unit: "зубчика" },
-{ name: "Красный молотый перец (паприка и острый)", amount: 1, unit: "по вкусу" }
-],
-steps: [
-"В глубокой сковороде растопить сливочное масло и слегка обжарить в нем муку до легкого орехового запаха.",
-"Постепенно, тонкой струйкой вливать горячий куриный бульон, непрерывно работая венчиком, чтобы избежать комков.",
-"Растереть чеснок с солью и красным перцем в однородную пасту.",
-"Добавить чесночную заправку в кипящий соус, проварить на слабом огне 5-7 минут до консистенции жидкой сметаны.",
-"Подавать в теплом виде к отварной курице и пасте."
-]
-}
-];
-let currentRecipe = null;
-let currentPortions = 4;
-// ИНИЦИАЛИЗАЦИЯ
-document.addEventListener('DOMContentLoaded', () => {
-renderGrid(database.filter(d => d.featured), 'featuredGrid');
-renderGrid(database, 'catalogGrid');
-setupFilters();
-});
-// SPA НАВИГАЦИЯ
-function navigateTo(pageId) {
-document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
-document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-document.getElementById(page-${pageId}).classList.add('active-page');
-document.getElementById(link-${pageId})?.classList.add('active');
-window.scrollTo(0, 0);
-}
-// РЕНДЕР КАРТОЧЕК
-function renderGrid(data, gridId) {
-const grid = document.getElementById(gridId);
-grid.innerHTML = '';
-if (data.length === 0) {
-grid.innerHTML = <p style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 40px 0;">Блюда не найдены...</p>;
-return;
-}
-data.forEach(dish => {
-const card = document.createElement('div');
-card.className = 'dish-card';
-card.innerHTML = <div class="dish-img-container"> <img src="${dish.image}" alt="${dish.title}" class="dish-img" loading="lazy"> <span class="dish-badge">${dish.categoryText}</span> </div> <div class="dish-content"> <h3 class="dish-title">${dish.title}</h3> <p class="dish-desc">${dish.desc}</p> <div class="dish-meta"> <span><i class="fa-regular fa-clock"></i> ${dish.time}</span> <span><i class="fa-solid fa-gauge-high"></i> ${dish.difficulty}</span> </div> <button class="view-recipe-btn" onclick="openModal('${dish.id}')">Открыть рецепт</button> </div>;
-grid.appendChild(card);
-});
-}
-// ПОИСК И ФИЛЬТРАЦИЯ
-function setupFilters() {
-const searchInput = document.getElementById('searchInput');
-const filterBtns = document.getElementById('filterBtns');
-function handleFilterSearch() {
-const activeFilter = filterBtns.querySelector('.filter-btn.active').dataset.filter;
-const searchText = searchInput.value.toLowerCase();
-const filtered = database.filter(dish => {
-const matchesFilter = activeFilter === 'all' || dish.category === activeFilter;
-const matchesSearch = dish.title.toLowerCase().includes(searchText) ||
-dish.desc.toLowerCase().includes(searchText);
-return matchesFilter && matchesSearch;
-});
-renderGrid(filtered, 'catalogGrid');
-}
-filterBtns.addEventListener('click', (e) => {
-if (e.target.classList.contains('filter-btn')) {
-filterBtns.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-e.target.classList.add('active');
-handleFilterSearch();
-}
-});
-searchInput.addEventListener('input', handleFilterSearch);
-}
-// РАБОТА С МОДАЛЬНЫМ ОКНОМ И КАЛЬКУЛЯТОРОМ
-function openModal(id) {
-currentRecipe = database.find(d => d.id === id);
-currentPortions = currentRecipe.basePortions;
-document.getElementById('modalTitle').innerText = currentRecipe.title;
-document.getElementById('modalDesc').innerText = currentRecipe.desc;
-document.getElementById('modalHero').innerHTML = <img src="${currentRecipe.image}" alt="${currentRecipe.title}">;
-updateIngredientsUI();
-const stepsList = document.getElementById('modalSteps');
-stepsList.innerHTML = '';
-currentRecipe.steps.forEach(step => {
-const li = document.createElement('li');
-li.innerText = step;
-stepsList.appendChild(li);
-});
-document.getElementById('recipeModal').classList.add('active');
-document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-document.getElementById('recipeModal').classList.remove('active');
-document.body.style.overflow = 'auto';
-}
-function updatePortions(change) {
-const newPortions = currentPortions + change;
-if (newPortions >= 1 && newPortions <= 20) {
-currentPortions = newPortions;
-updateIngredientsUI();
-}
-}
-function updateIngredientsUI() {
-document.getElementById('portionsCount').innerText = currentPortions;
-const ingredientsList = document.getElementById('modalIngredients');
-ingredientsList.innerHTML = '';
-currentRecipe.ingredients.forEach(ing => {
-const li = document.createElement('li');
-// Расчет коэффициента
-let displayAmount = '';
-if (typeof ing.amount === 'number') {
-const calculated = (ing.amount / currentRecipe.basePortions) * currentPortions;
-// Красивое округление до сотых/десятых
-displayAmount = Number(calculated.toFixed(1)).toString();
-} else {
-displayAmount = ing.amount;
-}
-li.innerHTML = <span>${ing.name}</span><strong>${displayAmount} ${ing.unit}</strong>;
-ingredientsList.appendChild(li);
-});
-}
-// Закрытие модалки при клике на оверлей
-document.getElementById('recipeModal').addEventListener('click', (e) => {
-if (e.target === document.getElementById('recipeModal')) closeModal();
-});
+            <!-- Блюдо 6 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #b5e2fa;">Мэжаджэ</div>
+                <div class="card-content">
+                    <h2 class="card-title">Мэжаджэ</h2>
+                    <p class="card-description">Традиционные слоеные кабардинские пышки или хлебцы. Тесто тонко раскатывается, смазывается топленым маслом и сворачивается. Получается невероятно нежная и хрустящая выпечка.</p>
+                    <div class="ingredients">
+                        <span>Основные ингредиенты:</span>
+                        Мука, вода или молоко, соль, большое количество топленого масла.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Кулинарный гид по Кабардино-Балкарии. Приятного аппетита! (Фыхъуусхъуэ!)</p>
+    </footer>
+
+</body>
+</html>
